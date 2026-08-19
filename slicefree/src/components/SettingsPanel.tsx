@@ -1,50 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
+import { DEFAULT_SETTINGS, type SlicerSettings } from '@/lib/slicer';
 import styles from './SettingsPanel.module.css';
 
-export interface SlicerSettings {
-  layerHeight: number;
-  infillDensity: number;
-  infillPattern: string;
-  printSpeed: number;
-  nozzleTemp: number;
-  bedTemp: number;
-  supportEnabled: boolean;
-  adhesionType: string;
-  wallCount: number;
-  topLayers: number;
-  bottomLayers: number;
-  nozzleDiameter: number;
-  filamentDiameter: number;
-  retractionEnabled: boolean;
-  retractionDistance: number;
-  retractionSpeed: number;
-}
+export type { SlicerSettings };
+export { DEFAULT_SETTINGS };
 
 interface SettingsPanelProps {
   settings: SlicerSettings;
   onSettingsChange: (settings: SlicerSettings) => void;
 }
-
-export const DEFAULT_SETTINGS: SlicerSettings = {
-  layerHeight: 0.2,
-  infillDensity: 20,
-  infillPattern: 'grid',
-  printSpeed: 50,
-  nozzleTemp: 200,
-  bedTemp: 60,
-  supportEnabled: false,
-  adhesionType: 'skirt',
-  wallCount: 2,
-  topLayers: 4,
-  bottomLayers: 4,
-  nozzleDiameter: 0.4,
-  filamentDiameter: 1.75,
-  retractionEnabled: true,
-  retractionDistance: 5,
-  retractionSpeed: 45,
-};
 
 const PRINTER_PRESETS: Record<string, Partial<SlicerSettings>> = {
   generic: {},

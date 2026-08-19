@@ -189,6 +189,7 @@ export default function Home() {
           progress={progress}
           progressMessage={progressMessage}
           hasFile={hasFile}
+          fileName={currentFile?.name}
           sliceResult={sliceResult}
         />
       )}

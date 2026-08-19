@@ -9,6 +9,7 @@ interface SliceButtonProps {
   progress: number;
   progressMessage: string;
   hasFile: boolean;
+  fileName?: string;
   sliceResult: {
     layerCount: number;
     estimatedTime: number;
@@ -24,6 +25,7 @@ export default function SliceButton({
   progress,
   progressMessage,
   hasFile,
+  fileName,
   sliceResult,
 }: SliceButtonProps) {
   const formatTime = (seconds: number) => {
@@ -35,11 +37,12 @@ export default function SliceButton({
 
   const downloadGcode = () => {
     if (!sliceResult) return;
+    const baseName = fileName ? fileName.replace(/\.[^/.]+$/, '') : 'model';
     const blob = new Blob([sliceResult.gcode], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'model.gcode';
+    a.download = `${baseName}.gcode`;
     a.click();
     URL.revokeObjectURL(url);
   };
